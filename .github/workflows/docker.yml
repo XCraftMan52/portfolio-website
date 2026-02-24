@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 env:
   IMAGE_NAME: ghcr.io/xcraftman52/portfolio-website:latest
 
@@ -28,15 +32,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-      - name: Build and Push Docker image
-        uses: elgohr/Publish-Docker-Github-Action@master
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          name: XCraftMan52/portfolio-website
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          tags: latest
 
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/xcraftman52/portfolio-website:latest
   deploy:
     name: Deploy to VPS
     runs-on: ubuntu-latest
@@ -52,7 +60,7 @@ jobs:
           envs: IMAGE_NAME  # <--- important to pass env var to remote shell
           script: |
             cd /opt/docker/portfolio-website
-            docker login ghcr.io -u ${{ secrets.USERNAME }} -p ${{ secrets.GITHUB_TOKEN }}
+            docker login ghcr.io -u xcraftman52 -p ${{ secrets.GHCR_PAT }}
             docker pull $IMAGE_NAME
             docker compose stop portfolio-website
             docker compose rm -f portfolio-website
