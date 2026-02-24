@@ -18,7 +18,7 @@ export default function About() {
             scouting community which has taught me leadership and perseverance.
           </p>
           <p>
-            When I'm not in front of a computer screen, you can find me exploring the outdoors or
+            When I&apos;m not in front of a computer screen, you can find me exploring the outdoors or
             collaborating on community projects.
           </p>
         </div>
