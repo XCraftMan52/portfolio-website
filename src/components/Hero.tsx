@@ -2,14 +2,24 @@ import React from 'react'
 
 export default function Hero() {
   return (
-    <div>
-        <div className='uppercase font-extrabold text-4xl'>Lucas Webber</div>
-        <div className='flex space-x-2'>
-            <div>Student</div>
-            <div>Tinkerer</div>
-            <div>Coder</div>
-            <div>Scouter</div>
+    <section id="hero" className="w-full min-h-[80vh] flex flex-col justify-center animate-in fade-in py-20">
+      <div className="space-y-8">
+        <h1 className="text-6xl sm:text-8xl font-black tracking-tight leading-[1.1]">
+          Lucas <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover">Webber</span>.
+        </h1>
+        <p className="text-xl sm:text-2xl text-foreground/70 max-w-2xl font-light">
+          A passionate Student, Tinkerer, Coder, and Developer.
+        </p>
+        <div className="pt-8 flex flex-wrap gap-4">
+          <a href="#projects" className="px-8 py-4 rounded-full bg-foreground text-background font-medium hover:bg-accent hover:text-white transition-all duration-300 shadow-lg hover:shadow-accent/25">
+            View My Work
+          </a>
+          <a href="#contact" className="px-8 py-4 rounded-full border border-foreground/20 hover:border-foreground transition-all duration-300 font-medium bg-background">
+            Contact Me
+          </a>
         </div>
-    </div>
+      </div>
+    </section>
   )
 }
