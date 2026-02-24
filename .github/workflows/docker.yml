@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ghcr.io/xcraftman52/portfolio-website/portfolio-website:latest
+  IMAGE_NAME: ghcr.io/xcraftman52/portfolio-website:latest
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
       - name: Build and Push Docker image
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: XCraftMan52/portfolio-website/portfolio-website
+          name: XCraftMan52/portfolio-website
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
